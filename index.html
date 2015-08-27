@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="description" content="My Etsy Neighborhood">
+	<meta name="keywords" content="etsy, map, app, google, neighborhood, shops, find, buy, artisans, sellers">
+	<title>My Etsy Neighborhood</title>
+	<link rel="stylesheet" href="css/style.css">
+	<link href='http://fonts.googleapis.com/css?family=Karla:400,700,500' rel='stylesheet' type='text/css'>
+	<script src="http://code.jquery.com/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+	<script src="js/app.js"></script>
+</head>
+<body>
+	<div class="search">
+		<div class="search__field">
+			<h1 class="search__title">my <span id="etsy-title">Etsy</span> neighborhood</h1>
+			<p id="search__field__instructions">Enter your address or zip code to see Etsy shops in your area.</p>
+			<form class="search__field__box" onsubmit="return false;">
+				<input type="text" placeholder="123 Etsy Way, Los Angeles, CA 90064" name="search__text" autofocus required>
+				<input type="submit" value="Find Shops">
+			</form>
+			<div class="search__location">
+				<h2 id="search__location__title">MY NEIGHBORHOOD</h2>
+				<div id="search__location__address">
+					<span id="search__location__city">Culver City, CA</span>
+					<br>
+					<span id="search__location__zip">90034</span>
+				</div>
+				<p id="search__location__disclaimer">Shops shown are within a 25 mile maximum radius of your location. Too few shops in your hood? Try a big city close to you for more results.</p>
+			</div>
+		</div>
+		<div class="search__map">
+			<img src="img/googlemap.png" alt="google" id="googlemap">
+		</div>
+	</div>
+	<div class="results">
+		<h2 id="results__title">Results</h2>
+		<ul class="results__boxes">
+			<li>
+				<p>1</p>
+			</li>
+			<li>
+				<p>2</p>
+			</li>
+			<li>
+				<p>3</p>
+			</li>
+		</ul>
+	</div>
+</body>
+</html>
