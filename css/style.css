@@ -42,6 +42,7 @@ body {
 	width: 30%;
 	text-align: center;
 	margin-bottom: 1rem;
+	margin-top: 1rem;
 	display: inline-block;
 }
 
@@ -156,8 +157,9 @@ input[type="submit"]:active {
 	padding: 1rem;
 }
 
-.search__map {
-	width: 65%;
+#map {
+	width: 95%;
+	height: 420px;
 	display: inline-block;
 	margin: 1rem;
 	border-radius: 8px;
@@ -170,6 +172,16 @@ input[type="submit"]:active {
 	text-align: center;
 	margin: 1rem;
 	display: inline-block;
+}
+
+.highlight {
+	color: #D5641C;
+	font-weight: bold;
+}
+
+.map-placeholder {
+	width: 95%;
+	padding: 1rem;
 }
 
 #googlemap {
@@ -265,9 +277,8 @@ input[type="submit"]:active {
 .copy {
 	color: #fff;
 	text-align: center;
-	margin: 2rem;
+	margin: 2rem 5rem 2rem 5rem;
 	padding: 1rem;
-	margin-left: 42%;
 }
 
 

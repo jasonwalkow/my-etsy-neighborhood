@@ -11,29 +11,31 @@
 	<link href="css/font-awesome.min.css" rel="stylesheet">
 	<script src="http://code.jquery.com/jquery.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmvBrZQZPutEA5tLi00K_MBj5TXwHPYmo&sensor=true"></script>
 	<script src="js/app.js"></script>
 </head>
 <body>
 	<div class="search">
 		<div class="search__field">
 			<h1 class="search__title">my <span id="etsy-title">Etsy</span> neighborhood</h1>
-			<p id="search__field__instructions">Enter your address or zip code to see Etsy shops in your area.</p>
+			<p id="search__field__instructions">Enter your zip code to see Etsy shops in your area.</p>
 			<form class="search__field__box" onsubmit="return false;">
-				<input type="text" placeholder="123 Etsy Way, Los Angeles, CA 90064" name="search__text" autofocus required>
+				<input type="text" placeholder="12345" name="search__text" id="address" autofocus required>
 				<input type="submit" value="Find Shops">
 			</form>
 			<div class="search__location">
 				<h2 id="search__location__title">MY NEIGHBORHOOD</h2>
 				<div id="search__location__address">
-					<span id="search__location__city">Culver City, CA</span>
+					<span id="search__location__city"></span>
 					<br>
-					<span id="search__location__zip">90034</span>
+					<span id="search__location__zip"></span>
 				</div>
 				<p id="search__location__disclaimer">Shops shown are within a 25 mile maximum radius of your location. Too few shops in your hood? Try a big city close to you for more results.</p>
 			</div>
 		</div>
 		<div class="search__map">
-			<img src="img/googlemap.png" alt="google" id="googlemap">
+			<div id="map"></div>
+			<img class="map-placeholder" src="img/googlemap.png" alt="google-placeholder">
 		</div>
 	</div>
 	<div class="results">
@@ -41,60 +43,24 @@
 		<ul class="results__boxes">
 			<li class="results__boxes__shops">
 				<div class="profile--image">
-					<img src="img/deanfred.png" alt="deanfred" class="deanfred">
+					<img src="" alt="profile image" class="img">
 				</div>
 				<div class="shop--profile">
-					<span class="shop-name">DeanFred Rex Prints</span>
+					<span class="shop-name"><a href="" target="_blank"></a></span>
 						<br>
-					<span class="shop-tagline">Minimalist Movie &amp; TV Posters</span>
+					<span class="shop-tagline"></span>
 						<br>
-					<span class="shop-address">3115 S Canfield Ave</span>
+					<span class="shop-city-state"></span>
 						<br>
-					<span class="shop-city-state-zip">Los Angeles, CA 90034</span>
+					<span class="shop-zip"></span>
 						<br>
 						<br>
-					<span class="shop-distance"><i class="fa fa-map-marker"></i> 0.3 miles away</span>
+					<span class="shop-distance"><i class="fa fa-map-marker"></i></span>
 				</div>
-				<p class="results__boxes__shops__descriptions">“I’ve always wondered what the powers of graphic design could bring. Though I'm pretty new to the Etsy game, I've been creating original film &amp; television-inspired art for a while. What started as something that I would post on my own bare walls has led me to start Deanfred Rex Prints.”</p>
-			</li>
-			<li class="results__boxes__shops">
-				<div class="profile--image">
-					<img src="img/deanfred.png" alt="deanfred" class="deanfred">
-				</div>
-				<div class="shop--profile">
-					<span class="shop-name">DeanFred Rex Prints</span>
-						<br>
-					<span class="shop-tagline">Minimalist Movie &amp; TV Posters</span>
-						<br>
-					<span class="shop-address">3115 S Canfield Ave</span>
-						<br>
-					<span class="shop-city-state-zip">Los Angeles, CA 90034</span>
-						<br>
-						<br>
-					<span class="shop-distance"><i class="fa fa-map-marker"></i> 0.3 miles away</span>
-				</div>
-				<p class="results__boxes__shops__descriptions">“I’ve always wondered what the powers of graphic design could bring. Though I'm pretty new to the Etsy game, I've been creating original film & television-inspired art for a while. What started as something that I would post on my own bare walls has led me to start Deanfred Rex Prints.”</p>
-			</li>
-			<li class="results__boxes__shops">
-				<div class="profile--image">
-					<img src="img/deanfred.png" alt="deanfred" class="deanfred">
-				</div>
-				<div class="shop--profile">
-					<span class="shop-name">DeanFred Rex Prints</span>
-						<br>
-					<span class="shop-tagline">Minimalist Movie &amp; TV Posters</span>
-						<br>
-					<span class="shop-address">3115 S Canfield Ave</span>
-						<br>
-					<span class="shop-city-state-zip">Los Angeles, CA 90034</span>
-						<br>
-						<br>
-					<span class="shop-distance"><i class="fa fa-map-marker"></i> 0.3 miles away</span>
-				</div>
-				<p class="results__boxes__shops__descriptions">“I’ve always wondered what the powers of graphic design could bring. Though I'm pretty new to the Etsy game, I've been creating original film & television-inspired art for a while. What started as something that I would post on my own bare walls has led me to start Deanfred Rex Prints.”</p>
+				<p class="results__boxes__shops__descriptions"></p>
 			</li>
 		</ul>
 	</div>
-	<span class="copy">&copy; 2015 Jason Walkow</span>
+	<p class="copy">&copy; 2015 Jason Walkow. <br>The term "Etsy" is a trademark of Etsy, Inc. This application uses the Etsy API and Googlemaps API, but is not endorsed or certified by Etsy, Inc. or Google.</p>
 </body>
 </html>
