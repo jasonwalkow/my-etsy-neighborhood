@@ -5,7 +5,7 @@ $(document).ready( function() {
 		$('.map-placeholder').hide();
 		$('#map').show();
 		$('.results').show();
-		getMap(geocoder, map);
+		getMap(geocoder, map, findShops);
 		findShops();
 		showResults();
 		goToResults();
@@ -51,76 +51,73 @@ var showResults = function(shops) {
 var findShops = function(shops) {
 
 	// parameters needed to pass in request to Etsy's API
-	var findAllShops = {tag: shops,
-							shop_name: string,
-							title: string,
-							UserAddress.city: string,
-							UserAddress.zip: string,
-							lat: latitude,
-							lon: longitude,
-							distance_max: 25};
+	var requestData = {
+		lat: latitude,
+		lon: longitude,
+		distance_max: 50,
+        api_key: "id5s60fsw2x2ozw38lzpkq5h"
+    };
 
-		api_key = "id5s60fsw2x2ozw38lzpkq5h";
-        terms = $('.address').val();
-        etsyURL = "https://openapi.etsy.com/v2/shops/active.js?keywords="+terms+"&limit=5&includes=Shop:1&api_key="+api_key;
-        
-        var data = $.ajax({
-                url: etsyURL,
-                data: request,
-                dataType: "jsonp",
-                type: "GET",
-                success: function getData(data) {
-                    if (data.ok) {
-                        if (data.count > 0) {
-                            $.each(data.results, function(i,item) {
-                                var sellers = showResults(item);
-                                $('.results__boxes').append(sellers);
-                            });
-                        } else {
-                            $('<p>No shops found.</p>').appendTo('.results__boxes');
-                        }
+        var terms = $('#address').val();
+        //var etsyURL = "https://openapi.etsy.com/v2/shops?lat="+latitude+"&lon="+longitude+"&distance_max=25&api_key="+api_key;
+        var etsyURL = "https://openapi.etsy.com/v2/shops";
+
+        $.ajax({
+            url: etsyURL,
+            data: requestData,
+            dataType: "jsonp",
+            type: "GET",
+            success: function getData(data) {
+                if (data.ok) {
+                    if (data.count > 0) {
+                        $.each(data.results, function(i,item) {
+                            var sellers = showResults(item);
+                            $('.results__boxes').append(sellers);
+                        });
                     } else {
-                        $('.results__boxes').empty();
-                        alert(data.error);
+                        $('<p>No shops found.</p>').appendTo('.results__boxes');
                     }
+                } else {
+                    $('.results__boxes').empty();
+                    alert(data.error);
                 }
-            });
+            }
+        });
 
-            return false;
+        return false;
 	}
 
-	/*var geocoder = new google.maps.Geocoder();
+	var geocoder = new google.maps.Geocoder();
 
 	function getMap(position) {
-			var coords = new google.maps.LatLng(latitude, longitude);
-            var latitude = 34.0500;
-            var longitude = -118.2500;
-            var mapOptions = {
-                center: coords,
-                zoom: 13,
-                mapTypeControl: true,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-             }
-            var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-          }
-
-    	//Get address from input field
-    	var address = document.getElementById("address").value;
-    	//Apply address to geocoder
-    	geocoder.geocode( { 'address': address}, function(results, status) {
-    		if (status == google.maps.GeocoderStatus.OK) {
-    			map.setCenter(results[0].geometry.location);
-    			var marker = new google.maps.Marker({
-                map: map, 
-                position: results[0].geometry.location
-            	});
-    		} else {
-    			console.log("GoogleMaps could not locate your address due to the following reason: " + status);
-    			}
-      });
+        //Get address from input field
+        var address = document.getElementById("address").value;
+        //Apply address to geocoder
+        geocoder.geocode( { address: address}, function(results, status) {
+            if (status == google.maps.GeocoderStatus.OK) {
+                var marker = new google.maps.Marker({
+                    map: map, 
+                    position: results[0].geometry.location
+                });
+                var mapOptions = {
+                    center: results[0].geometry.location,
+                    zoom: 13,
+                    mapTypeControl: true,
+                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                }
+                var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+                map.setCenter(results[0].geometry.location);
+            } else {
+                console.log("GoogleMaps could not locate your address due to the following reason: " + status);
+            }
+        });
+    }
+        
+	
+	
   		
   		//Set address marker on map
-  		var marker = new google.maps.Marker({
+  		/*var marker = new google.maps.Marker({
         position: coords,
         map: map,
         title: "My location"
