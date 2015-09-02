@@ -5,8 +5,18 @@
   -webkit-overflow-scrolling: touch;
 }
 
+.hidden {
+	display: none;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
 a:hover {
-	opacity: 0.7;
+	color: #D5641C;
+	opacity: 0.9;
 }
 
 li {
@@ -244,6 +254,10 @@ input[type="submit"]:active {
 .profile--image {
 	width: 60%;
 	margin: 0 auto 0 auto;
+}
+
+.profile-img {
+	width: 100%;
 }
 
 .shop-name {
