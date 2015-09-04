@@ -42,6 +42,9 @@ var showResults = function(shops) {
     // Set shop admirers to show in result
     result.find('.admirers').text(shops.num_favorers);
 
+    // Set shop listings number to show in result
+    result.find('.listings').text(shops.listing_active_count);
+
 	return result;
 };
 

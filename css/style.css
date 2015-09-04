@@ -155,12 +155,6 @@ input[type="submit"]:active {
 	font-size: 1.75rem;
 }
 
-#search__location__zip {
-	color: #5F9CE2;
-	font-size: 2.5rem;
-	font-weight: 700;
-}
-
 #search__location__disclaimer {
 	color: #606060;
 	font-size: 0.75rem;
@@ -235,13 +229,15 @@ input[type="submit"]:active {
 	border-radius: 3px;
 }
 
-.admirers {
-	color: #676767;
-	font-size: 1rem;
+.admirers,
+.listings {
+	color: #5F9CE2;
+	font-size: 1.25rem;
 	font-weight: 600;
 }
 
-.fa-heart {
+.fa-heart,
+.fa-tags {
 	color: #D5641C;
 }
 
@@ -273,24 +269,6 @@ input[type="submit"]:active {
 .shop-tagline {
 	font-size: 1rem;
 	font-style: italic;
-}
-
-.shop-address {
-	font-size: 1.25rem;
-}
-
-.shop-city-state-zip {
-	font-size: 1.25rem;
-}
-
-.shop-distance {
-	font-size: 1.3rem;
-	font-weight: bold;
-	color: #5F9CE2;
-}
-
-.fa-map-marker {
-	color: #D5641C;
 }
 
 .copy {
