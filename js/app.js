@@ -8,7 +8,7 @@ $(document).ready( function() {
 		$('.results').show();
 		getMap(findShops);
 		//showResults();
-		//goToResults();
+		goToResults();
 	});
 
 	//Slow Scroll animated
@@ -21,12 +21,15 @@ $(document).ready( function() {
 // this function takes the shop object returned by Etsy 
 // and creates new result to be appended to DOM
 var showResults = function(shops) {
+
+    // display default image if no icon is found
+    var defaultImage = "../my-etsy-neighborhood/img/etsyicon.png";
 	
 	// clone our result template code
 	var result = $('.templates .results__boxes__shops').clone();
 	
 	// Set the profile image in result
-	result.find('.profile--image img').attr('src', shops.icon_url_fullxfull);
+	result.find('.profile--image img').attr('src', shops.icon_url_fullxfull || defaultImage);
 
 	// Set shop name to show and link in result
 	var shopName = result.find('.shop-name a');
@@ -36,14 +39,8 @@ var showResults = function(shops) {
 	// Set tagline to show in result
 	result.find('.shop-tagline').text(shops.title);
 
-	// Set shop city and state to show in result
-	//result.find('.shop-city-state').text(shops.UserAddress.city + ", " + shops.UserAddress.state);
-
-	// Set zip code to show in result
-	//result.find('.shop-zip').text(shops.UserAddress.zip);
-
-	// Set latitude and longitude to show in result
-	//result.find('.shop-distance').text(shops.lat + ", " + shops.lon);
+    // Set shop admirers to show in result
+    result.find('.admirers').text(shops.num_favorers);
 
 	return result;
 };
@@ -59,7 +56,6 @@ var findShops = function(options) {
     };
 
         var terms = $('#address').val();
-        //var etsyURL = "https://openapi.etsy.com/v2/shops?lat="+latitude+"&lon="+longitude+"&distance_max=25&api_key="+api_key;
         var etsyURL = "https://openapi.etsy.com/v2/shops.js";
 
         $.ajax({
@@ -89,6 +85,22 @@ var findShops = function(options) {
 	}
 
 	var geocoder = new google.maps.Geocoder();
+    function insertAddress (results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+            //look for locality tag and administrative_area_level_1
+            var city = "";
+            var state = "";
+            for(var i=0, len=results[0].address_components.length; i<len; i++) {
+                var ac = results[0].address_components[i];
+                if(ac.types.indexOf("locality") >= 0) city = ac.long_name;
+                if(ac.types.indexOf("administrative_area_level_1") >= 0) state = ac.short_name;
+            }
+            // Post results
+            if(city != '' && state != '') {
+                $("#search__location__city").text(city + ", " + state);
+            }
+        }
+    }
 
 	function getMap(findShops) {
         //Get address from input field
@@ -97,10 +109,6 @@ var findShops = function(options) {
         geocoder.geocode( { address: address}, function(results, status) {
             if (status == google.maps.GeocoderStatus.OK) {
                 findShops(results[0].geometry.location);
-                var marker = new google.maps.Marker({
-                    map: map, 
-                    position: results[0].geometry.location
-                });
                 var mapOptions = {
                     center: results[0].geometry.location,
                     zoom: 13,
@@ -115,20 +123,18 @@ var findShops = function(options) {
                     map: map,
                     title: "My Location"
                 });
-
-                // Insert city and zip into .search__location__city and .search__location__zip
-                $(".search__location__city").text();
-                $(".search__location__zip").text();
-            } else {
-                console.log("GoogleMaps could not locate your address due to the following reason: " + status);
+                var position = results[0].geometry.location;
+                var latlng = new google.maps.LatLng(position.G,position.K);
+                geocoder.geocode({'latLng': latlng}, insertAddress);
             }
         });
     }
-        
-	
-	
-  		
-  		
 });
 
-//geocoder api=AIzaSyA399D_AbwR9Dz6xml2trtSAtNWRtlxbiw
+
+
+
+
+
+
+

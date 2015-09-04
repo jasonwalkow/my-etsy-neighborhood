@@ -235,9 +235,14 @@ input[type="submit"]:active {
 	border-radius: 3px;
 }
 
-.results__boxes__shops__descriptions {
+.admirers {
 	color: #676767;
-	font-size: 0.75rem;
+	font-size: 1rem;
+	font-weight: 600;
+}
+
+.fa-heart {
+	color: #D5641C;
 }
 
 .results__boxes__shops--profiles li {
