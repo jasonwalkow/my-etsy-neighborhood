@@ -29,8 +29,8 @@ var findShops = function(options) {
 
 	// parameters needed to pass in request to Etsy's API
 	var requestData = {
-		lat: options.G,
-		lon: options.K,
+		lat: options.H,
+		lon: options.L,
 		distance_max: 50,
         api_key: "id5s60fsw2x2ozw38lzpkq5h"
     };
@@ -108,7 +108,7 @@ var findShops = function(options) {
                     map: map,
                     title: "My Location"
                 });
-                var latlng = new google.maps.LatLng(location.G,location.K);
+                var latlng = new google.maps.LatLng(location.H,location.L);
                 geocoder.geocode({'latLng': latlng}, insertAddress);
             }
         });
