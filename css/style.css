@@ -33,7 +33,7 @@ body {
 	margin: 0;
 	padding-top: 0.1rem;
 	height: 100%;
-	background-color: #CECECE;
+	background-color: #dbdbdb;
 }
 
 .search {
@@ -115,7 +115,7 @@ input[type="submit"]:active {
 .search__title {
 	color: #fff;
 	font-size: 1.75rem;
-	background-color: #c9c9c9;
+	background-color: #dbdbdb;
 	border-top-right-radius: 8px;
 	border-top-left-radius: 8px;
 	border-bottom-right-radius: 0px;
@@ -275,7 +275,7 @@ input[type="submit"]:active {
 .copy {
 	color: #fff;
 	text-align: center;
-	margin: 2rem 5rem 2rem 5rem;
+	margin: 2rem 10%;
 	padding: 1rem;
 }
 
